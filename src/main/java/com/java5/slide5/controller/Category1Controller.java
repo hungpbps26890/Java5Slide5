@@ -1,6 +1,5 @@
 package com.java5.slide5.controller;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -17,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java5.slide5.dao.CategoryDAO;
 import com.java5.slide5.entity.Category;
+
 @Controller
 public class Category1Controller {
 	@Autowired
 	CategoryDAO dao;
-	
-	
+
 	@RequestMapping("/category1/sort")
 	public String index(Model model, @RequestParam("field") Optional<String> field) {
 		Sort sort = Sort.by(Direction.ASC, field.orElse("name"));
@@ -30,7 +29,7 @@ public class Category1Controller {
 		model.addAttribute("items", categories);
 		return "/category1/index";
 	}
-	
+
 	@RequestMapping("/category/page")
 	public String paginate(Model model, @RequestParam("page") Optional<Integer> page) {
 		Pageable pageable = PageRequest.of(page.orElse(0), 4);
